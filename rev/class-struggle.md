@@ -146,6 +146,7 @@ Challenge involves recovering a flag from this file where the original flag stri
 
 We have an array "gnmupmhiaosg" containing 45 transformed byte values.  
 Our goal is to reverse transformations to recover a 45-character flag.  
+The original flag underwent operations including XOR with a position-based value, left rotation, addition, nibble manipulation, and right rotation.
 
 ## Solution
 
@@ -194,5 +195,4 @@ int main() {
     printf("Flag: %s\n", flag);
     return 0;
 }
-```
-The original flag underwent operations including XOR with a position-based value, left rotation, addition, nibble manipulation, and right rotation.  
+```  

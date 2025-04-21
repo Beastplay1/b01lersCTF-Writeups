@@ -6,7 +6,7 @@ Welcome to the Amazing SSS! Join now to get your share of the secret. The flag i
 Connect with:ncat --ssl asss.atreides.b01lersc.tf 8443
 
 We're given the **ASSS.py** source code below: 
-```
+```python
 from Crypto.Util.number import getPrime, bytes_to_long
 
 def evaluate_poly(poly:list, x:int, s:int):
@@ -29,14 +29,14 @@ The flag `s` is 528 bits long (66 bytes)
 
 By collecting at least **9 unique `(aᵢ, yᵢ)` pairs**, we can recover `s` using the Chinese Remainder Theorem (CRT) over a total modulus > 528 bits.
 
-**Solution**
+## Solution
 
-**Steps**:
+### Steps:
 1. Collect 9+ unique `(aᵢ, yᵢ)` pairs.
 2. Use CRT to solve `s ≡ yᵢ (mod aᵢ)`.
 3. Convert `(s)` to bytes.
 
-```
+```python
 from Crypto.Util.number import long_to_bytes
 import pwn
 

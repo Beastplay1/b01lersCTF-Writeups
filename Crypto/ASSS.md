@@ -3,7 +3,7 @@
 ## Challenge Summary:
 
 Welcome to the Amazing SSS! Join now to get your share of the secret. The flag is 66 bytes long. <br>
-Connect with:ncat --ssl asss.atreides.b01lersc.tf 8443
+`ncat --ssl asss.atreides.b01lersc.tf 8443`
 
 We're given the **ASSS.py** source code below: 
 ```python
